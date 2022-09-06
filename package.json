@@ -13,6 +13,10 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
+    "typeorm": "typeorm-ts-node-commonjs -d src/db/ormconfig.ts",
+    "typeorm:run": "npm run typeorm migration:run",
+    "typeorm:revert": "npm run typeorm migration:revert",
+    "typeorm:create": "typeorm-ts-node-commonjs migration:create",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -23,14 +27,19 @@
   "dependencies": {
     "@nestjs/apollo": "^10.1.0",
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/graphql": "^10.1.1",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/typeorm": "^9.0.1",
     "apollo-server-express": "^3.10.2",
+    "dotenv": "^16.0.2",
     "graphql": "^16.6.0",
+    "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "typeorm": "^0.3.9"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",
