@@ -24,27 +24,30 @@ export class UsersService {
   }
 
   protected buildQuery(filterUsersArgs: FilterUsersArgs) {
-    const query = this.usersRepository.createQueryBuilder('user').select();
+    const query = this.usersRepository
+      .createQueryBuilder('user')
+      .select()
+      .where('1=1');
     if (filterUsersArgs.name) {
-      query.where('user.name = :name', { name: filterUsersArgs.name });
+      query.andWhere('user.name = :name', { name: filterUsersArgs.name });
     }
     if (filterUsersArgs.occupation) {
-      query.where('user.occupation = :occupation', {
+      query.andWhere('user.occupation = :occupation', {
         occupation: filterUsersArgs.occupation,
       });
     }
     if (filterUsersArgs.username) {
-      query.where('user.username = :username', {
+      query.andWhere('user.username = :username', {
         username: filterUsersArgs.username,
       });
     }
     if (filterUsersArgs.dob_from) {
-      query.where('user.dob >= :dob_from', {
+      query.andWhere('user.dob >= :dob_from', {
         dob_from: filterUsersArgs.dob_from,
       });
     }
     if (filterUsersArgs.dob_to) {
-      query.where('user.dob <= :dob_to', {
+      query.andWhere('user.dob <= :dob_to', {
         dob_to: filterUsersArgs.dob_to,
       });
     }
