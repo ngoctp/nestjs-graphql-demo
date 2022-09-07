@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import databaseConfig from './config/database.config';
 import { UsersModule } from './users/users.module';
 
@@ -21,6 +22,9 @@ import { UsersModule } from './users/users.module';
           username: configService.get('database.username'),
           password: configService.get('database.password'),
           database: configService.get('database.database'),
+          entities: [__dirname + '/**/*.entity{.ts,.js}'],
+          namingStrategy: new SnakeNamingStrategy(),
+          logging: true,
         };
       },
       inject: [ConfigService],
