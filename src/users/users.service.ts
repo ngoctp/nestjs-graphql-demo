@@ -19,8 +19,8 @@ export class UsersService {
     const user = this.usersRepository.create({
       ...createUserInput,
     });
-    const userRecord = await this.usersRepository.save(user);
-    return userRecord;
+    await this.usersRepository.save(user);
+    return user;
   }
 
   protected buildQuery(filterUsersArgs: FilterUsersArgs) {
