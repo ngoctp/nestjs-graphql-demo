@@ -47,7 +47,7 @@ export class UsersResolver {
 
   @ResolveField('age', () => Int, { nullable: true })
   age(@Parent() user: User): number | null {
-    const age = moment().diff(user.dob, 'years');
-    return isNaN(age) ? null : age;
+    const age = user.dob ? moment().diff(user.dob, 'years') : null;
+    return age;
   }
 }
