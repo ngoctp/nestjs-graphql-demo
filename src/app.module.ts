@@ -25,7 +25,7 @@ import { UsersModule } from './users/users.module';
           database: configService.get('database.database'),
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
           namingStrategy: new SnakeNamingStrategy(),
-          logging: true,
+          logging: false,
         };
       },
       inject: [ConfigService],
